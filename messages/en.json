@@ -12,7 +12,7 @@
         "title": "{name}'s Portfolio",
         "description": "Portfolio website showcasing my work as a {role}",
         "headline": "Software developer and builder",
-        "subline": "I'm Denis, a software developer at Advania, where I craft intuitive user experiences. After hours, I build my own projects."
+        "subline": "I'm Denis, a software developer at Advania. After hours, I build my own projects, create 3D models, 3D print, work on cars or working on some electronic project. I love to work with esp32 modules and arduinos."
     },
     "about": {
         "label": "About",
@@ -20,7 +20,7 @@
         "description": "Meet {name}, {role} from {location}",
         "intro": {
             "title": "Introduction",
-            "description": "Denis is a Belgrade-based design engineer with a passion for transforming complex challenges into simple, elegant design solutions. Her work spans digital interfaces, interactive experiences, and the convergence of design and technology."
+            "description": "Denis is a Belgrade-based design engineer with a passion for transforming complex challenges into simple, elegant solutions. His work spans digital interfaces, interactive experiences, and the convergence of design and technology."
         },
         "work": {
             "title": "Work Experience",
