@@ -55,9 +55,8 @@ const home = {
       work on some electronics project. I love to work with esp32 modules and
       arduinos.
       <br />
-      <br />
-      This website is created as a place for me to write about my projects and
-      hobbies. The blog part is currently under work.
+      <br /> This website is created as a place for me to write about my
+      projects and hobbies. The blog part is currently under work.
     </>
   ),
 };
@@ -169,7 +168,7 @@ const about = {
       {
         company: "SVEA Ekonomi",
         timeframe: "2020 - 2020",
-        role: "",
+        role: " ",
         achievements: [
           <>
             Worked in a team of beginners to deliver a full-stack application to
@@ -330,7 +329,6 @@ const about = {
           },
         ],
       },
-      ,
       {
         title: "Programming languages",
         description: (
