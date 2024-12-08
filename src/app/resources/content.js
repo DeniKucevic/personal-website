@@ -119,6 +119,23 @@ const about = {
         ],
       },
       {
+        company: "Ölgerðin",
+        timeframe: "2022 - Present",
+        role: "Freelance - Android developer",
+        achievements: [
+          <>Maintaining existing code base and adding new features</>,
+        ],
+        images: [
+          // optional: leave the array empty if you don't want to display images
+          {
+            src: "/images/companies/olgerdin.png",
+            alt: "Advania logo",
+            width: 20,
+            height: 9,
+          },
+        ],
+      },
+      {
         company: "Spark Analytics Ltd.",
         timeframe: "2021 - 2021",
         role: "Junior Full-stack Developer",
