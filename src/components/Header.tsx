@@ -57,11 +57,20 @@ export const Header = () => {
   const params = useParams();
   const [theme, setTheme] = useState("dark");
 
-  const htmlElement = document.querySelector("html");
+  let htmlElement: any = null;
 
-  if (htmlElement) {
-    htmlElement.dataset.theme = theme;
+  if (typeof window !== "undefined") {
+    htmlElement = document.querySelector("html");
   }
+
+  useEffect(() => {
+    if (htmlElement) {
+      htmlElement.dataset.theme = theme;
+    }
+    if (htmlElement && theme != localStorage.getItem("theme")) {
+      setTheme(localStorage.getItem("theme") || "dark");
+    }
+  }, [theme]);
 
   function handleLanguageChange(locale: string) {
     const nextLocale = locale as Locale;
@@ -74,9 +83,11 @@ export const Header = () => {
     if (!htmlElement) return;
     if (htmlElement.dataset.theme === "dark") {
       htmlElement.dataset.theme = "light";
+      localStorage.setItem("theme", "light");
       setTheme("light");
     } else {
       htmlElement.dataset.theme = "dark";
+      localStorage.setItem("theme", "dark");
       setTheme("dark");
     }
   }
