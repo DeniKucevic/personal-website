@@ -373,6 +373,36 @@ const about = {
           },
         ],
       },
+      {
+        title: "Tools",
+        description: <>Figma, Fusion360, Canva, Jira</>,
+        images: [
+          {
+            src: "/images/technical-skill/figma.png",
+            alt: "figma",
+            width: 6,
+            height: 6,
+          },
+          {
+            src: "/images/technical-skill/fusion.png",
+            alt: "fusion360",
+            width: 6,
+            height: 6,
+          },
+          {
+            src: "/images/technical-skill/canva.jpg",
+            alt: "canva",
+            width: 6,
+            height: 6,
+          },
+          {
+            src: "/images/technical-skill/jira.jpg",
+            alt: "jira",
+            width: 6,
+            height: 6,
+          },
+        ],
+      },
     ],
   },
 };
