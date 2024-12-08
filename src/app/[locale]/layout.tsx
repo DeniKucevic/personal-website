@@ -20,7 +20,7 @@ import { routing } from "@/i18n/routing";
 import { renderContent } from "@/app/resources";
 import { Background, Flex } from "@/once-ui/components";
 
-// import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/react";
 
 export async function generateMetadata({
   params: { locale },
@@ -149,7 +149,7 @@ export default async function RootLayout({
           <Footer />
         </Flex>
       </Flex>
-      {/* <Analytics /> */}
+      <Analytics />
     </NextIntlClientProvider>
   );
 }
