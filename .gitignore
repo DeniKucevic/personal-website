@@ -42,3 +42,6 @@ next-env.d.ts
 
 # migration
 make-history.sh
+
+# Claude Code local settings
+.claude/
