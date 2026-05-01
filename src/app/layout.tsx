@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Geist_Mono } from 'next/font/google'
+import { Clock } from '@/components/clock'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { Providers } from '@/components/providers'
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           aria-hidden="true"
         />
         <Providers>
+          <Clock />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
