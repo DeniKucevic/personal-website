@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Denis Kučević — Personal Website
+
+Personal portfolio and blog built with Next.js and Sanity CMS. Features a work history, project showcase, photo gallery, and a fully embedded Sanity Studio for content management.
+
+**Live at:** [deniskucevic.com](https://deniskucevic.com) <!-- update if different -->
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 + shadcn/ui |
+| CMS | Sanity v5 (embedded Studio) |
+| Deployment | Vercel |
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── about/          # About page
+│   ├── blog/           # Blog listing + post pages
+│   ├── gallery/        # Photo gallery
+│   ├── work/           # Work experience + projects
+│   └── studio/         # Embedded Sanity Studio
+├── components/         # Shared UI components
+├── lib/sanity/         # Sanity client, queries, image helpers
+└── sanity/schemas/     # Content schemas
+scripts/
+└── seed.ts             # Seeds Sanity with initial data
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 20+
+- A [Sanity](https://sanity.io) project
+
+### Environment Variables
+
+Create a `.env.local` file in the root:
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=your_write_token
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install & Run
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+The embedded Studio is available at [http://localhost:3000/studio](http://localhost:3000/studio).
 
-To learn more about Next.js, take a look at the following resources:
+### Seed Initial Data
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run seed
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Populates Sanity with site settings, work experience, and projects. Run once on a fresh dataset.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content Management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All content is managed through the embedded Sanity Studio at `/studio`. No separate Studio deployment needed.
+
+**Schemas:** site settings, work experience, projects, blog posts, gallery images.
