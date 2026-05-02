@@ -158,6 +158,7 @@ export default async function HomePage() {
                       alt={post.coverImage.alt ?? post.title}
                       width={80}
                       height={80}
+                      loading="eager"
                       className="shrink-0 rounded-lg object-cover"
                     />
                   )}

@@ -65,7 +65,7 @@ async function seed() {
       order: 1,
       achievements: [
         'Grew Smástund from an unnamed prototype to a production app with 10,000+ users across Icelandic government institutions, hospitals, airports and emergency services',
-        'Primary developer on the entire app codebase (Ionic/React + Capacitor) for 2+ years — independently taking features from requirements through research, design, implementation and release',
+        'Primary developer on the entire app codebase (Ionic/React + Capacitor) for 2+ years:independently taking features from requirements through research, design, implementation and release',
         'Contributed heavily to .NET back-end development; implemented Android CI/CD pipeline with GitHub Actions including automated build and release to Firebase and Google Play Store',
         'Actively involved in product planning and UI/UX design decisions throughout the project lifecycle',
       ],
@@ -81,7 +81,7 @@ async function seed() {
       order: 2,
       achievements: [
         "Took over sole ownership of a business-critical Android app (Kotlin) for Iceland's largest alcoholic beverage producer",
-        'App manages production shifts on the factory floor — quality control checklists, torque and weight monitoring, photo uploads, report generation and offline-first data sync',
+        'App manages production shifts on the factory floor:quality control checklists, torque and weight monitoring, photo uploads, report generation and offline-first data sync',
         "Ensures compliance with Iceland's strict alcohol production regulations across shifts",
         'Delivered a complete new production hall module from scratch; currently leading a full rewrite with full technical autonomy and a one year delivery target',
       ],
@@ -97,8 +97,8 @@ async function seed() {
       current: false,
       order: 3,
       achievements: [
-        'Significantly improved application stability — eliminated DOM bloat, resolved persistent UI issues and improved responsiveness across the board',
-        'Sole back-end developer on a Vue/Node stack — optimised queries, indexed the database and introduced performance monitoring to identify and fix bottlenecks',
+        'Significantly improved application stability:eliminated DOM bloat, resolved persistent UI issues and improved responsiveness across the board',
+        'Sole back-end developer on a Vue/Node stack:optimised queries, indexed the database and introduced performance monitoring to identify and fix bottlenecks',
         'Built a custom tiered subscription system with back-office management for manual account upgrades',
         'Standardised repository structure, coding practices and implemented multi-language support',
       ],
@@ -128,7 +128,7 @@ async function seed() {
       current: false,
       order: 5,
       achievements: [
-        'Built a full-stack food ordering SPA in React across organised sprints — delivered fully working and hosted on time, still live in production',
+        'Built a full-stack food ordering SPA in React across organised sprints:delivered fully working and hosted on time, still live in production',
       ],
     },
   ]
@@ -148,7 +148,7 @@ async function seed() {
       slug: { _type: 'slug', current: 'gymos' },
       category: 'personal',
       description:
-        'Commissioned by Fitness M gym — full-stack membership system with Next.js + PostgreSQL + Prisma, ESP32 RFID/PIN door access and a member phone portal. Live in active use.',
+        'Commissioned by Fitness M gym:full-stack membership system with Next.js + PostgreSQL + Prisma, ESP32 RFID/PIN door access and a member phone portal. Live in active use.',
       tech: ['Next.js', 'PostgreSQL', 'Prisma', 'ESP32', 'TypeScript'],
       featured: true,
       status: 'active',
@@ -189,7 +189,7 @@ async function seed() {
       slug: { _type: 'slug', current: 'hamtrade' },
       category: 'personal',
       description:
-        'Commissioned by radio club YU1EXY — HAM radio marketplace with Next.js + Supabase, realtime messaging and multi-language support. Live.',
+        'Commissioned by radio club YU1EXY:HAM radio marketplace with Next.js + Supabase, realtime messaging and multi-language support. Live.',
       tech: ['Next.js', 'Supabase', 'TypeScript'],
       liveUrl: 'https://hamtrade.net',
       featured: false,
@@ -203,7 +203,7 @@ async function seed() {
       slug: { _type: 'slug', current: 'zelara' },
       category: 'professional',
       description:
-        'Commissioned by Advania Serbia — workplace SaaS for parking spot booking. Ionic/React + Supabase, multi-language, CI/CD.',
+        'Commissioned by Advania Serbia:workplace SaaS for parking spot booking. Ionic/React + Supabase, multi-language, CI/CD.',
       tech: ['Ionic', 'React', 'Supabase', 'TypeScript'],
       employer: { _type: 'reference', _ref: 'we-advania' },
       featured: false,
@@ -217,7 +217,7 @@ async function seed() {
       slug: { _type: 'slug', current: 'jednaki' },
       category: 'professional',
       description:
-        'Commissioned by the Serbian Ministry of Demographics & Foundation Ana and Vlade Divac — Vue.js website for the Ulične akcije social project. Live.',
+        'Commissioned by the Serbian Ministry of Demographics & Foundation Ana and Vlade Divac:Vue.js website for the Ulične akcije social project. Live.',
       tech: ['Vue.js', 'Drupal'],
       liveUrl: 'https://jednaki.rs',
       employer: { _type: 'reference', _ref: 'we-divac' },

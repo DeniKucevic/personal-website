@@ -6,6 +6,7 @@ import { urlFor } from '@/lib/sanity/image'
 import { getAllPosts, getPostBySlug } from '@/lib/sanity/queries'
 import { cn } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
+import { SharePost } from '@/components/share-post'
 import { ArrowLeft } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -89,6 +90,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
         </>
       )}
+
+      <Separator />
+      <SharePost title={post.title} />
     </div>
   )
 }

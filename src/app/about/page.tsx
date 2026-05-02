@@ -11,7 +11,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About Denis Kucevic — software developer based in Pančevo, Serbia.',
+  description: 'About Denis Kucevic, software developer based in Pančevo, Serbia.',
 }
 
 function formatDateRange(startDate: string, endDate?: string, current?: boolean, yearOnly?: boolean) {
@@ -20,7 +20,7 @@ function formatDateRange(startDate: string, endDate?: string, current?: boolean,
     if (yearOnly) return String(year)
     return new Date(year, month - 1).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
   }
-  return `${fmt(startDate)} — ${current || !endDate ? 'Present' : fmt(endDate)}`
+  return `${fmt(startDate)} to ${current || !endDate ? 'Present' : fmt(endDate)}`
 }
 
 export default async function AboutPage() {
@@ -110,7 +110,7 @@ export default async function AboutPage() {
                     <ul className="mt-2 space-y-1">
                       {job.achievements.map((a: string, i: number) => (
                         <li key={i} className="text-sm text-muted-foreground flex gap-2">
-                          <span className="text-foreground/40 shrink-0">—</span>
+                          <span className="text-foreground/40 shrink-0">·</span>
                           {a}
                         </li>
                       ))}

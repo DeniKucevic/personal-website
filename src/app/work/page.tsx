@@ -4,7 +4,7 @@ import { ProjectGrid } from './ProjectGrid'
 
 export const metadata: Metadata = {
   title: 'Work',
-  description: 'Projects by Denis Kučević — things I have built.',
+  description: 'Projects by Denis Kučević, things I have built.',
 }
 
 export default async function WorkPage() {
