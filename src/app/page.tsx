@@ -102,6 +102,8 @@ export default async function HomePage() {
                         alt={project.coverImage.alt ?? project.title}
                         width={400}
                         height={220}
+                        placeholder={project.coverImage.asset?.metadata?.lqip ? "blur" : "empty"}
+                        blurDataURL={project.coverImage.asset?.metadata?.lqip}
                         className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
@@ -159,6 +161,8 @@ export default async function HomePage() {
                       width={80}
                       height={80}
                       loading="eager"
+                      placeholder={post.coverImage.asset?.metadata?.lqip ? "blur" : "empty"}
+                      blurDataURL={post.coverImage.asset?.metadata?.lqip}
                       className="shrink-0 rounded-lg object-cover"
                     />
                   )}

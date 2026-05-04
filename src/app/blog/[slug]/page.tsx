@@ -62,6 +62,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           alt={post.coverImage.alt ?? post.title}
           width={900}
           height={500}
+          placeholder={post.coverImage.asset?.metadata?.lqip ? "blur" : "empty"}
+          blurDataURL={post.coverImage.asset?.metadata?.lqip}
           className="w-full rounded-lg object-cover"
           priority
         />

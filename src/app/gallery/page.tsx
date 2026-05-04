@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import { urlFor } from '@/lib/sanity/image'
+import { GalleryGrid } from '@/components/gallery-grid'
 import { getGalleryImages } from '@/lib/sanity/queries'
-import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Gallery',
@@ -19,24 +18,7 @@ export default async function GalleryPage() {
       </div>
 
       {images?.length > 0 ? (
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-3 space-y-3">
-          {images.map((item: any) => (
-            <div key={item._id} className="break-inside-avoid group relative overflow-hidden rounded-lg">
-              <Image
-                src={urlFor(item.image).width(600).url()}
-                alt={item.caption ?? 'Gallery image'}
-                width={600}
-                height={400}
-                className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              {item.caption && (
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-                  <p className="text-white text-sm">{item.caption}</p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <GalleryGrid images={images} />
       ) : (
         <p className="text-center text-muted-foreground py-24">No images yet.</p>
       )}

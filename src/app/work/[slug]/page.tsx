@@ -81,6 +81,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           alt={project.coverImage.alt ?? project.title}
           width={900}
           height={500}
+          placeholder={project.coverImage.asset?.metadata?.lqip ? "blur" : "empty"}
+          blurDataURL={project.coverImage.asset?.metadata?.lqip}
           className="w-full rounded-lg object-cover"
           priority
         />
