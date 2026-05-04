@@ -2,7 +2,7 @@
 
 import { urlFor } from "@/lib/sanity/image"
 import Image from "next/image"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react"
 
 interface GalleryImage {
@@ -14,6 +14,7 @@ interface GalleryImage {
 export function GalleryGrid({ images }: { images: GalleryImage[] }) {
   const [index, setIndex] = useState<number | null>(null)
   const [loading, setLoading] = useState(false)
+  const touchStartX = useRef(0)
 
   const close = () => setIndex(null)
 
@@ -45,6 +46,15 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
   const open = (i: number) => {
     setLoading(true)
     setIndex(i)
+  }
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const delta = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(delta) > 50) delta > 0 ? next() : prev()
   }
 
   const active = index !== null ? images[index] : null
@@ -80,6 +90,8 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
         <div
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/92 backdrop-blur-sm"
           onClick={close}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
           {/* Close */}
           <button
