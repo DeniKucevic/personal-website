@@ -25,7 +25,7 @@ export async function getAllProjects(category?: 'personal' | 'professional') {
     ? `*[_type == "project" && category == "${category}"]`
     : `*[_type == "project"]`
   return client.fetch(
-    `${filter} | order(publishedAt desc) {
+    `${filter} | order(coalesce(order, 99) asc, publishedAt desc) {
       _id, title, slug, category, description, tech, status, featured,
       coverImage { asset->, alt }
     }`,

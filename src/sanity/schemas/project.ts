@@ -54,6 +54,7 @@ export const project = defineType({
       to: [{ type: 'workExperience' }],
       hidden: ({ document }) => document?.category !== 'professional',
     }),
+    defineField({ name: 'order', title: 'Display Order (lower = first)', type: 'number' }),
     defineField({ name: 'featured', title: 'Featured on Homepage', type: 'boolean', initialValue: false }),
     defineField({ name: 'publishedAt', title: 'Published At', type: 'date' }),
     defineField({
