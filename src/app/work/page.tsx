@@ -14,7 +14,7 @@ export default async function WorkPage() {
     <div className="mx-auto max-w-4xl px-4 py-16 space-y-8">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Work</h1>
-        <p className="text-muted-foreground">Things I have built.</p>
+        <p className="text-muted-foreground">Projects I have worked on, solo and as part of a team.</p>
       </div>
       <ProjectGrid projects={projects ?? []} />
     </div>
