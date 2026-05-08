@@ -1,44 +1,60 @@
-import type { Metadata } from 'next'
-import { Badge } from '@/components/ui/badge'
-import { buttonVariants } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
-import { urlFor } from '@/lib/sanity/image'
-import { getAllProjects, getProjectBySlug } from '@/lib/sanity/queries'
-import { cn } from '@/lib/utils'
-import { PortableText } from '@portabletext/react'
-import { ArrowLeft, ExternalLink } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import type { Metadata } from "next";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { urlFor } from "@/lib/sanity/image";
+import { getAllProjects, getProjectBySlug } from "@/lib/sanity/queries";
+import { cn } from "@/lib/utils";
+import { PortableText } from "@portabletext/react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const projects = await getAllProjects()
-  return projects.map((p: any) => ({ slug: p.slug.current }))
+  const projects = await getAllProjects();
+  return projects.map((p: any) => ({ slug: p.slug.current }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
-  const project = await getProjectBySlug(slug)
-  if (!project) return {}
-  return { title: project.title, description: project.description }
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+  if (!project) return {};
+  return { title: project.title, description: project.description };
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const project = await getProjectBySlug(slug)
-  if (!project) notFound()
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+  if (!project) notFound();
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 space-y-10">
-      <Link href="/work" className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), '-ml-2')}>
+      <Link
+        href="/work"
+        className={cn(
+          buttonVariants({ variant: "ghost", size: "sm" }),
+          "-ml-2",
+        )}
+      >
         <ArrowLeft className="h-4 w-4 mr-1" /> Back to work
       </Link>
 
       {/* Header */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary" className="capitalize">{project.category}</Badge>
-          {project.status === 'wip' && <Badge variant="outline">WIP</Badge>}
+          <Badge variant="secondary" className="capitalize">
+            {project.category}
+          </Badge>
+          {project.status === "wip" && <Badge variant="outline">WIP</Badge>}
         </div>
         <h1 className="text-3xl font-bold tracking-tight">{project.title}</h1>
         {project.description && (
@@ -50,7 +66,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(buttonVariants({ size: 'sm' }))}
+              className={cn(buttonVariants({ size: "sm" }))}
             >
               <ExternalLink className="h-4 w-4 mr-1.5" /> Live
             </Link>
@@ -60,7 +76,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
               GitHub
             </Link>
@@ -69,7 +85,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         {project.tech?.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {project.tech.map((t: string) => (
-              <Badge key={t} variant="outline" className="text-xs">{t}</Badge>
+              <Badge key={t} variant="outline" className="text-xs">
+                {t}
+              </Badge>
             ))}
           </div>
         )}
@@ -77,11 +95,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {project.coverImage && (
         <Image
-          src={urlFor(project.coverImage).width(900).height(500).fit('crop').url()}
+          src={urlFor(project.coverImage)
+            .width(900)
+            .height(500)
+            .fit("crop")
+            .url()}
           alt={project.coverImage.alt ?? project.title}
           width={900}
           height={500}
-          placeholder={project.coverImage.asset?.metadata?.lqip ? "blur" : "empty"}
+          placeholder={
+            project.coverImage.asset?.metadata?.lqip ? "blur" : "empty"
+          }
           blurDataURL={project.coverImage.asset?.metadata?.lqip}
           className="w-full rounded-lg object-cover"
           priority
@@ -99,7 +123,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   image: ({ value }) => (
                     <Image
                       src={urlFor(value).width(900).url()}
-                      alt={value.alt ?? ''}
+                      alt={value.alt ?? ""}
                       width={900}
                       height={500}
                       className="w-full rounded-lg"
@@ -121,7 +145,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {project.images.map((img: any, i: number) => (
                 <Image
                   key={i}
-                  src={urlFor(img).width(450).height(300).fit('crop').url()}
+                  src={urlFor(img).width(450).height(300).fit("crop").url()}
                   alt={img.alt ?? `Image ${i + 1}`}
                   width={450}
                   height={300}
@@ -133,5 +157,5 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </>
       )}
     </div>
-  )
+  );
 }

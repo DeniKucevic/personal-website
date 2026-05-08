@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -22,11 +22,14 @@ export function Footer() {
           >
             LinkedIn
           </Link>
-          <Link href="mailto:denikucevic@gmail.com" className="hover:text-foreground transition-colors">
+          <Link
+            href="mailto:denikucevic@gmail.com"
+            className="hover:text-foreground transition-colors"
+          >
             Email
           </Link>
         </div>
       </div>
     </footer>
-  )
+  );
 }

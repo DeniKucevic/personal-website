@@ -1,12 +1,16 @@
-import { client } from './client'
+import { client } from "./client";
 
-const revalidate = { next: { revalidate: 60 } }
+const revalidate = { next: { revalidate: 60 } };
 
 export async function getSiteSettings() {
-  return client.fetch(`*[_type == "siteSettings"][0] {
+  return client.fetch(
+    `*[_type == "siteSettings"][0] {
     ...,
     cv { asset-> }
-  }`, {}, revalidate)
+  }`,
+    {},
+    revalidate,
+  );
 }
 
 export async function getFeaturedProjects() {
@@ -16,22 +20,22 @@ export async function getFeaturedProjects() {
       coverImage { asset->, alt }
     }`,
     {},
-    revalidate
-  )
+    revalidate,
+  );
 }
 
-export async function getAllProjects(category?: 'personal' | 'professional') {
+export async function getAllProjects(category?: "personal" | "professional") {
   const filter = category
     ? `*[_type == "project" && category == "${category}"]`
-    : `*[_type == "project"]`
+    : `*[_type == "project"]`;
   return client.fetch(
     `${filter} | order(coalesce(order, 99) asc, publishedAt desc) {
       _id, title, slug, category, description, tech, status, featured,
       coverImage { asset->, alt }
     }`,
     {},
-    revalidate
-  )
+    revalidate,
+  );
 }
 
 export async function getProjectBySlug(slug: string) {
@@ -44,22 +48,22 @@ export async function getProjectBySlug(slug: string) {
       employer->{ company, role }
     }`,
     { slug },
-    revalidate
-  )
+    revalidate,
+  );
 }
 
-export async function getAllPosts(type?: 'blog' | 'guide') {
+export async function getAllPosts(type?: "blog" | "guide") {
   const filter = type
     ? `*[_type == "post" && type == "${type}"]`
-    : `*[_type == "post"]`
+    : `*[_type == "post"]`;
   return client.fetch(
     `${filter} | order(publishedAt desc) {
       _id, title, slug, type, excerpt, tags, publishedAt, featured,
       coverImage { asset->, alt }
     }`,
     {},
-    revalidate
-  )
+    revalidate,
+  );
 }
 
 export async function getPostBySlug(slug: string) {
@@ -69,8 +73,8 @@ export async function getPostBySlug(slug: string) {
       coverImage { asset->, alt }
     }`,
     { slug },
-    revalidate
-  )
+    revalidate,
+  );
 }
 
 export async function getRecentPosts(count = 3) {
@@ -80,8 +84,8 @@ export async function getRecentPosts(count = 3) {
       coverImage { asset->, alt }
     }`,
     {},
-    revalidate
-  )
+    revalidate,
+  );
 }
 
 export async function getWorkExperience() {
@@ -92,8 +96,8 @@ export async function getWorkExperience() {
       logo { asset-> }
     }`,
     {},
-    revalidate
-  )
+    revalidate,
+  );
 }
 
 export async function getGalleryImages() {
@@ -103,6 +107,6 @@ export async function getGalleryImages() {
       image { asset->, hotspot, crop }
     }`,
     {},
-    revalidate
-  )
+    revalidate,
+  );
 }

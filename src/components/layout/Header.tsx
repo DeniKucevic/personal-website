@@ -32,7 +32,9 @@ export function Header() {
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-0.5">
           {links.map((link) => {
-            const active = link.exact ? pathname === link.href : pathname.startsWith(link.href);
+            const active = link.exact
+              ? pathname === link.href
+              : pathname.startsWith(link.href);
             return (
               <Link
                 key={link.href}
@@ -77,7 +79,11 @@ export function Header() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={`px-3 py-2 text-sm rounded-md transition-colors hover:text-foreground ${
-                  (link.exact ? pathname === link.href : pathname.startsWith(link.href))
+                  (
+                    link.exact
+                      ? pathname === link.href
+                      : pathname.startsWith(link.href)
+                  )
                     ? "text-foreground font-medium"
                     : "text-muted-foreground"
                 }`}
