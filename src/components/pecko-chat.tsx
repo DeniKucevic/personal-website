@@ -510,7 +510,6 @@ export function PeckoChat({ className }: { className?: string }) {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKey}
           disabled={isBlocked || exited}
-          autoFocus
           placeholder={exited ? "Dovidjenja!" : "ukucaj pitanje..."}
           className="flex-1 bg-transparent outline-none text-green-300 placeholder:text-green-900 disabled:opacity-40 caret-green-400"
         />
