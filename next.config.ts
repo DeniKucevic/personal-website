@@ -13,7 +13,8 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/igt-slot-game/:path*",
-        destination: "igt-demo-game-slot.vercel.app",
+        destination:
+          "https://igt-demo-game-slot.vercel.app/igt-slot-game/:path*",
       },
     ];
   },
