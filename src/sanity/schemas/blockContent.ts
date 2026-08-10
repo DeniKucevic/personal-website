@@ -145,6 +145,61 @@ export const blockContent = defineType({
     }),
     defineArrayMember({
       type: "object",
+      name: "beforeAfter",
+      title: "Before / After",
+      fields: [
+        {
+          name: "layout",
+          type: "string",
+          title: "Layout",
+          options: {
+            list: [
+              { title: "Side by side", value: "sideBySide" },
+              { title: "Slider (drag to reveal)", value: "slider" },
+            ],
+            layout: "radio",
+          },
+          initialValue: "sideBySide",
+        },
+        {
+          name: "before",
+          type: "image",
+          title: "Before",
+          options: { hotspot: true },
+          fields: [{ name: "alt", type: "string", title: "Alt text" }],
+        },
+        {
+          name: "after",
+          type: "image",
+          title: "After",
+          options: { hotspot: true },
+          fields: [{ name: "alt", type: "string", title: "Alt text" }],
+        },
+        {
+          name: "beforeLabel",
+          type: "string",
+          title: "Before label",
+          initialValue: "Before",
+        },
+        {
+          name: "afterLabel",
+          type: "string",
+          title: "After label",
+          initialValue: "After",
+        },
+        { name: "caption", type: "string", title: "Caption (optional)" },
+      ],
+      preview: {
+        select: { media: "before", caption: "caption" },
+        prepare: ({ media, caption }) => ({
+          title: "Before / After",
+          subtitle: caption,
+          media,
+        }),
+      },
+    }),
+    defineArrayMember({
+      type: "object",
       name: "videoEmbed",
       title: "Video",
       fields: [

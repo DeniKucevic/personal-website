@@ -1,4 +1,5 @@
 import type { PortableTextComponents } from "@portabletext/react";
+import { BeforeAfterSlider } from "@/components/before-after-slider";
 import { urlFor } from "@/lib/sanity/image";
 import { cn } from "@/lib/utils";
 import {
@@ -128,6 +129,82 @@ function VideoEmbed({ value }: { value: { url?: string; caption?: string } }) {
   );
 }
 
+function BeforeAfter({
+  value,
+}: {
+  value: {
+    layout?: "sideBySide" | "slider";
+    before?: { alt?: string };
+    after?: { alt?: string };
+    beforeLabel?: string;
+    afterLabel?: string;
+    caption?: string;
+  };
+}) {
+  const { before, after, caption } = value;
+  if (!before || !after) return null;
+
+  const beforeLabel = value.beforeLabel ?? "Before";
+  const afterLabel = value.afterLabel ?? "After";
+
+  if (value.layout === "slider") {
+    return (
+      <figure className="not-prose my-6">
+        <BeforeAfterSlider
+          beforeSrc={urlFor(before).width(1000).height(750).fit("crop").url()}
+          afterSrc={urlFor(after).width(1000).height(750).fit("crop").url()}
+          beforeAlt={before.alt ?? beforeLabel}
+          afterAlt={after.alt ?? afterLabel}
+          beforeLabel={beforeLabel}
+          afterLabel={afterLabel}
+        />
+        {caption && (
+          <figcaption className="mt-2 text-center text-xs text-muted-foreground">
+            {caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
+
+  const panels = [
+    { img: before, label: beforeLabel },
+    { img: after, label: afterLabel },
+  ];
+
+  return (
+    <figure className="not-prose my-6">
+      <div className="grid grid-cols-2 overflow-hidden rounded-lg border border-border">
+        {panels.map(({ img, label }, i) => (
+          <div
+            key={i}
+            className={cn(
+              "relative aspect-[4/3]",
+              i === 1 && "border-l border-border",
+            )}
+          >
+            <Image
+              src={urlFor(img).width(700).height(525).fit("crop").url()}
+              alt={img.alt ?? label}
+              fill
+              sizes="(max-width: 640px) 50vw, 350px"
+              className="object-cover"
+            />
+            <span className="absolute right-2 top-2 rounded bg-background/80 px-2 py-0.5 text-xs font-medium backdrop-blur-sm">
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+      {caption && (
+        <figcaption className="mt-2 text-center text-xs text-muted-foreground">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
 /**
  * Renderers shared by every PortableText field (blog posts and projects).
  * Page-specific blocks (e.g. the Pecko embed) are merged on top per page.
@@ -153,6 +230,7 @@ export const baseComponents: PortableTextComponents = {
     callout: Callout,
     codeBlock: CodeBlock,
     videoEmbed: VideoEmbed,
+    beforeAfter: BeforeAfter,
     divider: ({ value }: { value: { variant?: "line" | "dots" } }) =>
       value.variant === "dots" ? (
         <div
