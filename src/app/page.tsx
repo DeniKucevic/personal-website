@@ -24,13 +24,40 @@ export default async function HomePage() {
     getRecentPosts(3),
   ]);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: settings?.name ?? "Denis Kučević",
+    alternateName: "Denis Kucevic",
+    url: "https://deniskucevic.com",
+    jobTitle: settings?.tagline ?? "Software Developer",
+    description: settings?.bio,
+    ...(settings?.location ? { address: settings.location } : {}),
+    ...(settings?.avatar
+      ? {
+          image: urlFor(settings.avatar)
+            .width(400)
+            .height(400)
+            .fit("crop")
+            .url(),
+        }
+      : {}),
+    sameAs: [settings?.github, settings?.linkedin].filter(Boolean),
+  };
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-20 space-y-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* Hero */}
       <section className="flex flex-col-reverse sm:flex-row items-start gap-10 sm:gap-16">
         <div className="flex-1 space-y-5">
           <h1 className="fade-up-1 text-5xl sm:text-6xl font-bold tracking-tight leading-tight">
-            {settings?.name ?? "Denis Kucevic"}
+            {settings?.name ?? "Denis Kučević"}
           </h1>
           <p className="fade-up-2 text-xl sm:text-2xl text-primary font-medium">
             {settings?.tagline ?? "Software Developer"}

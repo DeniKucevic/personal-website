@@ -7,6 +7,7 @@ import { urlFor } from "@/lib/sanity/image";
 import { getAllPosts, getPostBySlug } from "@/lib/sanity/queries";
 import { cn } from "@/lib/utils";
 import { PortableText } from "@portabletext/react";
+import { baseComponents } from "@/components/portable-text";
 import { SharePost } from "@/components/share-post";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
@@ -28,7 +29,30 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
-  return { title: post.title, description: post.excerpt };
+
+  const url = `/blog/${slug}`;
+
+  // The og:image / twitter:image come from the sibling opengraph-image.tsx,
+  // which renders a branded title card for every post.
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      url,
+      publishedTime: post.publishedAt,
+      authors: ["Denis Kučević"],
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+    },
+  };
 }
 
 export default async function PostPage({
@@ -40,8 +64,41 @@ export default async function PostPage({
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishedAt,
+    dateModified: post._updatedAt ?? post.publishedAt,
+    url: `https://deniskucevic.com/blog/${slug}`,
+    mainEntityOfPage: `https://deniskucevic.com/blog/${slug}`,
+    keywords: post.tags,
+    ...(post.coverImage
+      ? {
+          image: urlFor(post.coverImage)
+            .width(1200)
+            .height(630)
+            .fit("crop")
+            .url(),
+        }
+      : {}),
+    author: {
+      "@type": "Person",
+      name: "Denis Kučević",
+      alternateName: "Denis Kucevic",
+      url: "https://deniskucevic.com",
+    },
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <Link
         href="/blog"
         className={cn(
@@ -103,16 +160,9 @@ export default async function PostPage({
             <PortableText
               value={post.content}
               components={{
+                ...baseComponents,
                 types: {
-                  image: ({ value }) => (
-                    <Image
-                      src={urlFor(value).width(900).url()}
-                      alt={value.alt ?? ""}
-                      width={900}
-                      height={500}
-                      className="w-full rounded-lg"
-                    />
-                  ),
+                  ...baseComponents.types,
                   peckoEmbed: ({ value }) => (
                     <div className="not-prose my-8">
                       <PeckoChat />

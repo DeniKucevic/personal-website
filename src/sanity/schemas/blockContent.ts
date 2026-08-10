@@ -33,7 +33,37 @@ export const blockContent = defineType({
     defineArrayMember({
       type: "image",
       options: { hotspot: true },
-      fields: [{ name: "alt", type: "string", title: "Alt text" }],
+      fields: [
+        { name: "alt", type: "string", title: "Alt text" },
+        { name: "caption", type: "string", title: "Caption (optional)" },
+      ],
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "divider",
+      title: "Divider",
+      fields: [
+        {
+          name: "variant",
+          type: "string",
+          title: "Style",
+          options: {
+            list: [
+              { title: "Line", value: "line" },
+              { title: "Dots", value: "dots" },
+            ],
+            layout: "radio",
+          },
+          initialValue: "line",
+        },
+      ],
+      preview: {
+        select: { variant: "variant" },
+        prepare: ({ variant }) => ({
+          title: "Divider",
+          subtitle: variant === "dots" ? "· · ·" : "———",
+        }),
+      },
     }),
     defineArrayMember({
       type: "object",
@@ -45,6 +75,93 @@ export const blockContent = defineType({
       preview: {
         select: { title: "caption" },
         prepare: () => ({ title: "🤖 Pecko Chat Embed" }),
+      },
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "callout",
+      title: "Callout",
+      fields: [
+        {
+          name: "tone",
+          type: "string",
+          title: "Tone",
+          options: {
+            list: [
+              { title: "Info", value: "info" },
+              { title: "Tip", value: "tip" },
+              { title: "Warning", value: "warning" },
+              { title: "Success", value: "success" },
+            ],
+            layout: "radio",
+          },
+          initialValue: "info",
+        },
+        { name: "body", type: "text", title: "Body", rows: 3 },
+      ],
+      preview: {
+        select: { title: "body", tone: "tone" },
+        prepare: ({ title, tone }) => ({
+          title: title || "Callout",
+          subtitle: tone ? `Callout · ${tone}` : "Callout",
+        }),
+      },
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "codeBlock",
+      title: "Code",
+      fields: [
+        {
+          name: "language",
+          type: "string",
+          title: "Language",
+          options: {
+            list: [
+              "bash",
+              "css",
+              "html",
+              "json",
+              "jsx",
+              "tsx",
+              "javascript",
+              "typescript",
+              "python",
+              "text",
+            ],
+          },
+          initialValue: "text",
+        },
+        { name: "filename", type: "string", title: "Filename (optional)" },
+        { name: "code", type: "text", title: "Code", rows: 8 },
+      ],
+      preview: {
+        select: { filename: "filename", language: "language" },
+        prepare: ({ filename, language }) => ({
+          title: filename || "Code snippet",
+          subtitle: language || "text",
+        }),
+      },
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "videoEmbed",
+      title: "Video",
+      fields: [
+        {
+          name: "url",
+          type: "url",
+          title: "Video URL",
+          description: "YouTube or Vimeo link",
+        },
+        { name: "caption", type: "string", title: "Caption (optional)" },
+      ],
+      preview: {
+        select: { title: "caption", url: "url" },
+        prepare: ({ title, url }) => ({
+          title: title || "Video",
+          subtitle: url || "YouTube / Vimeo",
+        }),
       },
     }),
   ],

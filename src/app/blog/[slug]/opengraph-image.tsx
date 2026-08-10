@@ -1,11 +1,26 @@
+import { getPostBySlug } from "@/lib/sanity/queries";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-export const alt = "Denis Kučević, Software Developer";
+export const alt = "Denis Kucevic — Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  const title = post?.title ?? "Blog";
+  const date = post?.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : null;
+
   return new ImageResponse(
     <div
       style={{
@@ -14,8 +29,7 @@ export default function Image() {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
         padding: "80px",
         fontFamily: "sans-serif",
         position: "relative",
@@ -46,45 +60,49 @@ export default function Image() {
           backgroundSize: "24px 24px",
         }}
       />
+
+      <p
+        style={{
+          color: "#34d399",
+          fontSize: "24px",
+          margin: 0,
+          fontWeight: 500,
+          letterSpacing: "0.05em",
+          position: "relative",
+        }}
+      >
+        deniskucevic.com / blog
+      </p>
+
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "12px",
+          gap: "20px",
           position: "relative",
         }}
       >
-        <p
-          style={{
-            color: "#34d399",
-            fontSize: "22px",
-            margin: 0,
-            fontWeight: 500,
-            letterSpacing: "0.05em",
-          }}
-        >
-          deniskucevic.com
-        </p>
         <h1
           style={{
             color: "#f1f5f9",
-            fontSize: "72px",
+            fontSize: "60px",
             fontWeight: 700,
             margin: 0,
-            lineHeight: 1.05,
+            lineHeight: 1.1,
+            display: "flex",
           }}
         >
-          Denis Kučević
+          {title}
         </h1>
         <p
           style={{
             color: "#94a3b8",
-            fontSize: "30px",
+            fontSize: "26px",
             margin: 0,
             fontWeight: 400,
           }}
         >
-          Software Developer · Pančevo, Serbia
+          {[date, "Denis Kučević"].filter(Boolean).join("  ·  ")}
         </p>
       </div>
     </div>,

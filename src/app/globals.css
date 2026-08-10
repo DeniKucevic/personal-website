@@ -120,6 +120,32 @@
   --sidebar-ring: oklch(0.79 0.159 162);
 }
 
+/* Sugar High syntax highlighting tokens — light */
+:root {
+  --sh-class: #2d5e9d;
+  --sh-identifier: #354150;
+  --sh-sign: #8996a3;
+  --sh-property: #0550ae;
+  --sh-entity: #249a97;
+  --sh-jsxliterals: #6266d1;
+  --sh-string: #007f7a;
+  --sh-keyword: #cf222e;
+  --sh-comment: #8a949e;
+}
+
+/* Sugar High syntax highlighting tokens — dark */
+.dark {
+  --sh-class: #4c97f8;
+  --sh-identifier: #d6deeb;
+  --sh-sign: #7f8ea3;
+  --sh-property: #7fdbca;
+  --sh-entity: #82aaff;
+  --sh-jsxliterals: #c792ea;
+  --sh-string: #ecc48d;
+  --sh-keyword: #f78c6c;
+  --sh-comment: #637777;
+}
+
 /* Dot grid background pattern — light and dark variants */
 .dot-grid {
   background-image: radial-gradient(

@@ -17,19 +17,28 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://deniskucevic.com"),
-  title: { default: "Denis Kucevic", template: "%s | Denis Kucevic" },
+  title: { default: "Denis Kučević", template: "%s | Denis Kučević" },
   description,
+  authors: [{ name: "Denis Kučević", url: "https://deniskucevic.com" }],
+  creator: "Denis Kučević",
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "Denis Kučević — Blog" },
+      ],
+    },
+  },
   openGraph: {
     type: "website",
-    siteName: "Denis Kucevic",
-    title: "Denis Kucevic",
+    siteName: "Denis Kučević",
+    title: "Denis Kučević",
     description,
     url: "https://deniskucevic.com",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Denis Kucevic",
+    title: "Denis Kučević",
     description,
   },
 };

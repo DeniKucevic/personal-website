@@ -4,7 +4,7 @@ import { getGalleryImages } from "@/lib/sanity/queries";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "Photos by Denis Kucevic.",
+  description: "Photos by Denis Kučević.",
 };
 
 export default async function GalleryPage() {

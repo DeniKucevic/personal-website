@@ -26,7 +26,7 @@ export function Header() {
           href="/"
           className="font-semibold tracking-tight text-foreground/90 transition-colors hover:text-foreground"
         >
-          Denis Kucevic
+          Denis Kučević
         </Link>
 
         {/* Desktop nav */}

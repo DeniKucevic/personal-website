@@ -6,6 +6,7 @@ import { urlFor } from "@/lib/sanity/image";
 import { getAllProjects, getProjectBySlug } from "@/lib/sanity/queries";
 import { cn } from "@/lib/utils";
 import { PortableText } from "@portabletext/react";
+import { baseComponents } from "@/components/portable-text";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -116,22 +117,7 @@ export default async function ProjectPage({
         <>
           <Separator />
           <div className="prose prose-neutral dark:prose-invert max-w-none">
-            <PortableText
-              value={project.content}
-              components={{
-                types: {
-                  image: ({ value }) => (
-                    <Image
-                      src={urlFor(value).width(900).url()}
-                      alt={value.alt ?? ""}
-                      width={900}
-                      height={500}
-                      className="w-full rounded-lg"
-                    />
-                  ),
-                },
-              }}
-            />
+            <PortableText value={project.content} components={baseComponents} />
           </div>
         </>
       )}

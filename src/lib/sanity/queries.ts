@@ -69,7 +69,7 @@ export async function getAllPosts(type?: "blog" | "guide") {
 export async function getPostBySlug(slug: string) {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0] {
-      _id, title, slug, type, excerpt, content, tags, publishedAt,
+      _id, title, slug, type, excerpt, content, tags, publishedAt, _updatedAt,
       coverImage { asset->, alt }
     }`,
     { slug },

@@ -12,7 +12,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Denis Kucevic, software developer based in Pančevo, Serbia.",
+    "About Denis Kučević, software developer based in Pančevo, Serbia.",
 };
 
 function formatDateRange(
@@ -58,7 +58,7 @@ export default async function AboutPage() {
         <div className="space-y-3">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">
-              {settings?.name ?? "Denis Kucevic"}
+              {settings?.name ?? "Denis Kučević"}
             </h1>
             <p className="text-muted-foreground mt-1">
               {settings?.tagline ?? "Software Developer"}
