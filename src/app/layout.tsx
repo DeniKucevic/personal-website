@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Geist_Mono } from "next/font/google";
 import { Clock } from "@/components/clock";
 import { Footer } from "@/components/layout/Footer";
@@ -71,6 +72,12 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </Providers>
+        {/* Cloudflare Web Analytics */}
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          strategy="afterInteractive"
+          data-cf-beacon='{"token": "7d3b4ead92ff45219b37a159aeb3368b"}'
+        />
       </body>
     </html>
   );
