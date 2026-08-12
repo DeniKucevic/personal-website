@@ -57,7 +57,7 @@ export async function getAllPosts(type?: "blog" | "guide") {
     ? `*[_type == "post" && type == "${type}"]`
     : `*[_type == "post"]`;
   return client.fetch(
-    `${filter} | order(publishedAt desc) {
+    `${filter} | order(coalesce(publishedAt, _createdAt) desc) {
       _id, title, slug, type, excerpt, tags, publishedAt, featured,
       coverImage { asset->, alt }
     }`,
@@ -79,7 +79,7 @@ export async function getPostBySlug(slug: string) {
 
 export async function getRecentPosts(count = 3) {
   return client.fetch(
-    `*[_type == "post"] | order(publishedAt desc)[0...${count}] {
+    `*[_type == "post"] | order(coalesce(publishedAt, _createdAt) desc)[0...${count}] {
       _id, title, slug, type, excerpt, tags, publishedAt,
       coverImage { asset->, alt }
     }`,

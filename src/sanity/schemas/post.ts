@@ -38,6 +38,9 @@ export const post = defineType({
       name: "publishedAt",
       title: "Published At",
       type: "datetime",
+      description:
+        "Defaults to when the post is created. Override to backdate or schedule the display date.",
+      initialValue: () => new Date().toISOString(),
     }),
     defineField({
       name: "featured",

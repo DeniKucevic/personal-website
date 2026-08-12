@@ -64,10 +64,14 @@ function CodeBlock({
         </figcaption>
       )}
       <pre className="overflow-x-auto p-4 text-sm">
-        <code
-          className="font-mono"
-          dangerouslySetInnerHTML={{ __html: highlight(value.code ?? "") }}
-        />
+        {!value.language || value.language === "text" ? (
+          <code className="font-mono">{value.code}</code>
+        ) : (
+          <code
+            className="font-mono"
+            dangerouslySetInnerHTML={{ __html: highlight(value.code ?? "") }}
+          />
+        )}
       </pre>
     </figure>
   );
