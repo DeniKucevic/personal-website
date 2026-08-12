@@ -21,7 +21,7 @@ export default async function HomePage() {
   const [settings, featuredProjects, recentPosts] = await Promise.all([
     getSiteSettings(),
     getFeaturedProjects(),
-    getRecentPosts(3),
+    getRecentPosts(4),
   ]);
 
   const jsonLd = {
@@ -210,7 +210,7 @@ export default async function HomePage() {
         <section className="space-y-7">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold tracking-tight">
-              Recent Posts
+              From the Blog
             </h2>
             <Link
               href="/blog"

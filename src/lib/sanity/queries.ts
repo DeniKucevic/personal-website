@@ -77,10 +77,10 @@ export async function getPostBySlug(slug: string) {
   );
 }
 
-export async function getRecentPosts(count = 3) {
+export async function getRecentPosts(count = 4) {
   return client.fetch(
-    `*[_type == "post"] | order(coalesce(publishedAt, _createdAt) desc)[0...${count}] {
-      _id, title, slug, type, excerpt, tags, publishedAt,
+    `*[_type == "post"] | order(coalesce(featured, false) desc, coalesce(publishedAt, _createdAt) desc)[0...${count}] {
+      _id, title, slug, type, excerpt, tags, publishedAt, featured,
       coverImage { asset->, alt }
     }`,
     {},
